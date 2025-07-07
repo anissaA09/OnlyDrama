@@ -1,57 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OnlyDrama</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://i.imgur.com/OeYz5He.png" type="image/png" />
+  <!-- Favicon: cute pink girl icon -->
+  <link rel="icon" href="https://i.imgur.com/LrNwl0c.png" type="image/png" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts for logo -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
 
   <style>
+    /* Reset and base */
     body {
-      background-color: white;
-      color: #333;
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      overflow-x: hidden;
+      background: white;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
+
+    /* Header */
     header {
-      background: linear-gradient(90deg, #ffc0cb 0%, #fffacd 100%);
+      background: #ffc0cb;
       padding: 20px 40px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       box-shadow: 0 4px 6px rgba(255, 192, 203, 0.3);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10;
     }
-    header .logo {
-      display: flex;
-      align-items: center;
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.8em;
+      color: #ff69b4;
+      margin: 0;
       cursor: pointer;
       user-select: none;
-    }
-    header .logo img {
-      width: 48px;
-      height: 48px;
-      margin-right: 12px;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ffb6c1;
-    }
-    header .logo h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3.2em;
-      color: #ff1493;
-      margin: 0;
       letter-spacing: 2px;
       position: relative;
     }
-    header .logo h1::after {
+    header h1::after {
       content: '';
       position: absolute;
       bottom: 6px;
@@ -63,178 +57,225 @@
       filter: blur(6px);
       z-index: -1;
     }
+
     nav {
       display: flex;
-      gap: 18px;
+      gap: 15px;
     }
     nav a {
-      color: #ff1493;
-      font-weight: 700;
+      color: #ff69b4;
+      font-weight: bold;
       text-decoration: none;
       font-size: 1.1em;
-      padding: 8px 14px;
-      border-radius: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
       transition: background-color 0.3s ease;
     }
     nav a:hover {
       background-color: #fffacd;
-      color: #d81b60;
+      color: #ff1493;
     }
+
+    /* Main content layout */
     main {
-      display: flex;
+      flex: 1;
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 20px auto;
+      display: flex;
+      gap: 20px;
       padding: 0 20px;
-      gap: 30px;
     }
-    .content {
-      flex: 1 1 65%;
+
+    /* Left side: drama grid */
+    #leftPanel {
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
+
     .search-bar {
       margin-bottom: 20px;
       text-align: center;
     }
     .search-bar input {
-      width: 80%;
-      max-width: 420px;
-      padding: 12px 20px;
-      font-size: 1.3em;
+      width: 90%;
+      max-width: 400px;
+      padding: 10px 15px;
+      font-size: 1.2em;
       border: 2px solid #ff69b4;
-      border-radius: 30px;
+      border-radius: 25px;
       outline: none;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
+      transition: border-color 0.3s ease;
     }
     .search-bar input:focus {
       border-color: #fffacd;
       background-color: #fffacd;
     }
 
-    /* Compact grid of small dramas */
-    .grid {
+    #dramaGrid {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(90px,1fr));
-      gap: 14px;
-      justify-items: center;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 8px;
+      max-height: 650px;
+      overflow-y: auto;
+      padding-right: 5px;
     }
+
     .card {
       background: #fff0f6;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(255, 192, 203, 0.3);
-      cursor: pointer;
-      padding: 6px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+      overflow: hidden;
       text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      padding-bottom: 5px;
       user-select: none;
-      width: 90px;
     }
-    .card:hover {
-      transform: scale(1.15);
-      box-shadow: 0 6px 14px rgba(255, 182, 193, 0.6);
+    .card:hover, .card:focus {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(255, 182, 193, 0.7);
+      outline: none;
+      z-index: 2;
+      position: relative;
     }
     .card img {
       width: 90px;
       height: 130px;
       object-fit: cover;
-      border-radius: 10px;
+      border-bottom: 2px solid #ffb6c1;
+      border-radius: 8px 8px 0 0;
       display: block;
-      margin-bottom: 6px;
+      margin: 0 auto;
     }
     .card-name {
-      font-weight: 600;
+      font-weight: 700;
       color: #ff1493;
-      font-size: 0.9em;
+      font-size: 0.85em;
+      margin: 6px 4px 6px 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* Detail panel on right */
-    aside.details {
-      flex: 1 1 35%;
-      background: #fffacd;
-      border-radius: 14px;
+    /* Right side: details panel */
+    #rightPanel {
+      flex-basis: 420px;
+      background: #fff0f6;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(255, 182, 193, 0.6);
       padding: 20px;
-      box-shadow: 0 4px 8px rgba(255, 215, 180, 0.5);
       display: flex;
       flex-direction: column;
       gap: 15px;
-    }
-    aside.details.hidden {
-      display: none;
-    }
-    aside.details img.detail-img {
-      width: 100%;
-      height: 270px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #ff69b4aa;
-    }
-    aside.details h2 {
-      margin: 0;
-      font-size: 1.8em;
-      color: #d81b60;
-      user-select: text;
-    }
-    aside.details p.description {
-      font-size: 1em;
-      line-height: 1.4;
-      color: #555;
-      max-height: 140px;
-      overflow-y: auto;
-      user-select: text;
-    }
-    aside.details .episodes {
-      font-weight: 700;
-      color: #ff1493;
-      cursor: pointer;
       user-select: none;
-      font-size: 1.1em;
-      border: 2px solid #ff1493;
-      padding: 6px 12px;
-      border-radius: 20px;
-      width: fit-content;
-      transition: background-color 0.3s ease;
-      align-self: flex-start;
-    }
-    aside.details .episodes:hover {
-      background-color: #ff1493;
-      color: white;
     }
 
-    /* Video player container */
-    .video-container {
-      position: relative;
+    #detailImg {
       width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      margin-bottom: 15px;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 0 20px #ff69b4aa;
-      display: none;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #ffb6c1;
     }
-    .video-container iframe, .video-container video {
-      position: absolute;
-      top: 0; left: 0;
+    #detailTitle {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2em;
+      color: #ff1493;
+      margin: 0;
+      text-align: center;
+    }
+    #detailDescription {
+      flex-grow: 1;
+      font-size: 1em;
+      color: #444;
+      overflow-y: auto;
+      max-height: 180px;
+      padding: 8px;
+      border: 1px solid #ffb6c1;
+      border-radius: 8px;
+      background: #fff7fb;
+    }
+
+    #episodeCount {
+      font-weight: 700;
+      color: #ff69b4;
+      cursor: pointer;
+      text-align: center;
+      border: 2px solid #ff69b4;
+      border-radius: 25px;
+      padding: 8px 0;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #episodeCount:hover, #episodeCount[aria-pressed="true"] {
+      background-color: #ffb6c1;
+      color: white;
+      border-color: #ff1493;
+    }
+
+    /* Video player above */
+    #videoPlayer {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      background: black;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.8);
+      display: none;
+      z-index: 100;
+    }
+    #videoPlayer.show {
+      display: block;
+    }
+    #videoPlayer iframe {
       width: 100%;
       height: 100%;
+      border-radius: 12px;
       border: none;
-      border-radius: 14px;
-      background: black;
     }
-    .video-container.show {
-      display: block;
+
+    /* Scrollbar styling for drama grid and description */
+    #dramaGrid::-webkit-scrollbar,
+    #detailDescription::-webkit-scrollbar {
+      width: 7px;
+    }
+    #dramaGrid::-webkit-scrollbar-thumb,
+    #detailDescription::-webkit-scrollbar-thumb {
+      background: #ffb6c1;
+      border-radius: 5px;
+    }
+    #dramaGrid::-webkit-scrollbar-track,
+    #detailDescription::-webkit-scrollbar-track {
+      background: #ffe6f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+      }
+      #rightPanel {
+        max-width: 100%;
+        flex-basis: auto;
+        margin-top: 20px;
+        height: auto;
+      }
+      #videoPlayer {
+        top: 60px;
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo" onclick="window.location.reload()" title="Reload Page">
-    <img src="https://i.imgur.com/OeYz5He.png" alt="OnlyDrama Logo" />
-    <h1>OnlyDrama</h1>
-  </div>
+  <h1 tabindex="0" onclick="window.location.reload()" aria-label="Reload OnlyDrama homepage">OnlyDrama</h1>
   <nav>
     <a href="#">Anime</a>
     <a href="#">J-Drama</a>
@@ -245,49 +286,42 @@
 </header>
 
 <main>
-  <section class="content">
+  <section id="leftPanel" aria-label="Drama recommendations and search">
     <div class="search-bar">
       <input
         type="text"
         id="searchInput"
         placeholder="Search dramas..."
+        aria-label="Search dramas"
         onkeyup="filterDramas()"
-        autocomplete="off"
       />
     </div>
-
-    <div class="video-container" id="videoPlayer"></div>
-
-    <div class="grid" id="dramaGrid" role="list" aria-label="Drama List">
-      <!-- Drama cards generated by JS -->
-    </div>
+    <div id="dramaGrid" role="list" aria-live="polite" aria-relevant="additions removals"></div>
   </section>
 
-  <aside class="details hidden" id="detailsPanel" aria-live="polite" aria-atomic="true">
-    <img src="" alt="Drama Poster" class="detail-img" id="detailImg" />
+  <section id="rightPanel" aria-label="Drama details" hidden>
+    <img id="detailImg" src="" alt="Drama poster" />
     <h2 id="detailTitle"></h2>
-    <p class="description" id="detailDescription"></p>
-    <div
-      class="episodes"
-      id="episodesBtn"
-      tabindex="0"
-      role="button"
+    <div id="detailDescription" tabindex="0"></div>
+    <button
+      id="episodeCount"
       aria-pressed="false"
-      aria-label="Show video player"
-    >
-      Episodes: <span id="episodeCount"></span>
-    </div>
-  </aside>
+      aria-label="Toggle video player"
+      title="Click to watch trailer"
+    ></button>
+  </section>
 </main>
 
+<div id="videoPlayer" role="region" aria-label="Video player"></div>
+
 <script>
-  // Drama data array with all info needed
+  // Drama data
   const dramas = [
     {
       name: "Attack on Titan",
       img: "https://i.imgur.com/ZX6m6Bt.jpg",
       description:
-        "Humans live inside enormous walled cities to protect themselves from Titans, gigantic humanoid creatures. Eren Yeager vows to eliminate them after witnessing the death of his mother.",
+        "In a world besieged by monstrous Titans, humanity fights for survival within towering walls. Eren Yeager joins the Scout Regiment to uncover the truth behind the Titans and protect mankind.",
       episodes: 75,
       videoUrl: "https://www.youtube.com/embed/MGRm4IzK1SQ"
     },
@@ -295,17 +329,33 @@
       name: "Hana Yori Dango",
       img: "https://i.imgur.com/ocXuXOS.jpg",
       description:
-        "Tsukushi Makino is a tough girl from a working-class family who attends an elite school and faces bullying by the F4 group of rich kids. Romance and drama follow.",
-      episodes: 51,
-      videoUrl: "https://www.youtube.com/embed/JqALQlklv9Q"
+        "Tsukushi Makino, a working-class girl, enters an elite high school dominated by the wealthy F4. Amid conflicts and romance, she challenges social status and finds love.",
+      episodes: 25,
+      videoUrl: "https://www.youtube.com/embed/9E4K09bLk-Y"
     },
     {
       name: "Crash Landing on You",
       img: "https://i.imgur.com/4Z9o0iC.jpg",
       description:
-        "A South Korean heiress accidentally paraglides into North Korea, where a North Korean army officer helps her hide and they fall in love despite borders and dangers.",
+        "A South Korean heiress accidentally paraglides into North Korea, where she meets a soldier. Their forbidden romance crosses borders and tensions.",
       episodes: 16,
-      videoUrl: "https://www.youtube.com/embed/5luI4nLgIBs"
+      videoUrl: "https://www.youtube.com/embed/S1AnPqaL-pk"
+    },
+    {
+      name: "2gether: The Series",
+      img: "https://i.imgur.com/38ORHPs.jpg",
+      description:
+        "A fake relationship between two college boys turns into genuine love as they navigate their feelings and social pressures in Thailand.",
+      episodes: 13,
+      videoUrl: "https://www.youtube.com/embed/_QXqMWbA7sc"
+    },
+    {
+      name: "Eternal Love",
+      img: "https://i.imgur.com/QNdC3go.jpg",
+      description:
+        "A Chinese fantasy romance about gods, mortals, and eternal love spanning three lifetimes and numerous challenges.",
+      episodes: 58,
+      videoUrl: "https://www.youtube.com/embed/jpu_E4goEok"
     },
     {
       name: "TharnType",
@@ -325,17 +375,17 @@
     }
   ];
 
+  // DOM references
   const grid = document.getElementById('dramaGrid');
-  const detailsPanel = document.getElementById('detailsPanel');
+  const detailsPanel = document.getElementById('rightPanel');
   const detailImg = document.getElementById('detailImg');
   const detailTitle = document.getElementById('detailTitle');
   const detailDescription = document.getElementById('detailDescription');
   const episodeCount = document.getElementById('episodeCount');
-  const episodesBtn = document.getElementById('episodesBtn');
   const videoPlayer = document.getElementById('videoPlayer');
   const searchInput = document.getElementById('searchInput');
 
-  // Generate drama cards
+  // Create drama cards dynamically
   function createDramaCards() {
     grid.innerHTML = '';
     dramas.forEach((drama, idx) => {
@@ -350,6 +400,7 @@
         <img src="${drama.img}" alt="Poster of ${drama.name}" />
         <div class="card-name" title="${drama.name}">${drama.name}</div>
       `;
+
       card.addEventListener('click', () => selectDrama(idx));
       card.addEventListener('keypress', e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -362,81 +413,66 @@
     });
   }
 
-  // Select a drama and show details
+  // Show selected drama details
   function selectDrama(index) {
     const drama = dramas[index];
     detailImg.src = drama.img;
     detailImg.alt = `Poster of ${drama.name}`;
     detailTitle.textContent = drama.name;
     detailDescription.textContent = drama.description;
-    episodeCount.textContent = drama.episodes;
-    episodesBtn.setAttribute('aria-pressed', 'false');
+    episodeCount.textContent = `Episodes: ${drama.episodes}`;
+    episodeCount.setAttribute('aria-pressed', 'false');
     videoPlayer.classList.remove('show');
     videoPlayer.innerHTML = '';
-    detailsPanel.classList.remove('hidden');
-    // Scroll description top on new drama
-    detailDescription.scrollTop = 0;
-    // Save selected index for video play
+    detailsPanel.hidden = false;
     detailsPanel.dataset.selectedIndex = index;
+    detailDescription.scrollTop = 0;
   }
 
-  // Toggle video player on episode count click
+  // Toggle video player on episodeCount click
   function toggleVideo() {
     const isShown = videoPlayer.classList.contains('show');
     if (isShown) {
       videoPlayer.classList.remove('show');
       videoPlayer.innerHTML = '';
-      episodesBtn.setAttribute('aria-pressed', 'false');
+      episodeCount.setAttribute('aria-pressed', 'false');
     } else {
       const idx = detailsPanel.dataset.selectedIndex;
-      if (idx === undefined) return;
-      const drama = dramas[idx];
-      // Embed YouTube iframe video
-      videoPlayer.innerHTML = `
-        <iframe
-          src="${drama.videoUrl}?autoplay=1&rel=0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="Video player for ${drama.name}"
-        ></iframe>
-      `;
-      videoPlayer.classList.add('show');
-      episodesBtn.setAttribute('aria-pressed', 'true');
-      // Scroll main content to show video
-      videoPlayer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (idx !== undefined) {
+        const drama = dramas[idx];
+        videoPlayer.innerHTML = `
+          <iframe 
+            src="${drama.videoUrl}?autoplay=1&mute=1" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen 
+            title="Trailer for ${drama.name}"
+          ></iframe>`;
+        videoPlayer.classList.add('show');
+        episodeCount.setAttribute('aria-pressed', 'true');
+      }
     }
   }
 
-  // Filter dramas on search
+  episodeCount.addEventListener('click', toggleVideo);
+
+  // Search filter
   function filterDramas() {
     const query = searchInput.value.toLowerCase();
-    const cards = grid.querySelectorAll('.card');
-    dramas.forEach((drama, idx) => {
-      const card = cards[idx];
-      if (drama.name.toLowerCase().includes(query)) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-    // Hide details and video if filter removed selection
-    detailsPanel.classList.add('hidden');
-    videoPlayer.classList.remove('show');
-    videoPlayer.innerHTML = '';
+    const cards = grid.children;
+    for (let i = 0; i < cards.length; i++) {
+      const dramaName = dramas[i].name.toLowerCase();
+      cards[i].style.display = dramaName.includes(query) ? '' : 'none';
+    }
   }
 
-  // Event listeners
-  episodesBtn.addEventListener('click', toggleVideo);
-  episodesBtn.addEventListener('keypress', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleVideo();
-    }
-  });
-
-  // Init page
+  // Initialize
   createDramaCards();
+
+  // Show first drama by default
+  selectDrama(0);
 </script>
 
 </body>
 </html>
+
+     
