@@ -2,39 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OnlyDrama 💖</title>
+  <title>OnlyDrama</title>
+
+  <!-- Google Fonts: Pacifico for logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
-
     body {
-      margin: 0;
-      font-family: 'Comfortaa', cursive, sans-serif;
-      background: white;
-      color: #ff66cc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
+      background-color: white;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
     }
-
     header {
-      text-align: center;
+      background-color: #ffc0cb; /* cute pink */
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(255, 192, 203, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.8em;
+      color: #ff69b4; /* hot pink */
+      margin: 0;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    /* Soft light yellow underline/glow for the logo */
+    header h1::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: #fff8dc; /* soft light yellow */
+      border-radius: 5px;
+      filter: blur(6px);
+      z-index: -1;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+    nav a {
+      color: #ff69b4;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1em;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #fffacd; /* light yellow */
+      color: #ff1493; /* deeper pink */
+    }
+    main {
+      padding: 30px 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .search-bar {
       margin-bottom: 30px;
-      width: 100%;
-      max-width: 600px;
+      text-align: center;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin: 0 0 10px;
-      color: #ff99cc;
-      text-shadow: 0 0 8px #ffb6c1;
+    .search-bar input {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: 2px solid #ff69b4;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s ease;
     }
-
-    input[type="search"] {
+    .search-bar input:focus {
+      border-color: #fffacd;
+      background-color: #fffacd;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(130px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff0f6;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(255, 192, 203, 0.3);
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding-bottom: 10px;
+    }
+    .card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 14px rgba(255, 182, 193, 0.6);
+    }
+    .card img {
       width: 100%;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border: 2
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 3px solid #ffb6c1; /* light pink border */
+      border-radius: 12px 12px 0 0;
+      display: block;
+    }
+    .card-name {
+      font-weight: 700;
+      color: #ff1493;
+      font-size: 1em;
+      margin: 10px 0 12px 0;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 onclick="window.location.reload()">OnlyDrama</h1>
+  <nav>
+    <a href="#">Anime</a>
+    <a href="#">J-Drama</a>
+    <a href="#">Korean</a>
+    <a href="#">Thai</a>
+    <a href="#">Chinese</a>
+  </nav>
+</header>
+
+<main>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search dramas..." onkeyup="filterDramas()" />
+  </div>
+
+  <div class="grid" id="dramaGrid">
+    <div class="card" data-name="Attack on Titan">
+      <img src="https://i.imgur.com/ZX6m6Bt.jpg" alt="Attack on Titan" />
+      <div class="card-name" title="Attack on Titan">Attack on Titan</div>
+    </div>
+    <div class="card" data-name="Hana Yori Dango">
+      <img src="https://i.imgur.com/ocXuXOS.jpg" alt="Hana Yori Dango" />
+      <div class="card-name" title="Hana Yori Dango">Hana Yori Dango</div>
+    </div>
+    <div class="card" data-name="Crash Landing on You">
+      <img src="https://i.imgur.com/4Z9o0iC.jpg" alt="Crash Landing on You" />
+      <div class="card-name" title="Crash Landing on You">Crash Landing on You</div>
+    </div>
+    <div class="card" data-name="2gether: The Series">
+      <img src="https://i.imgur.com/38ORHPs.jpg" alt="2gether: The Series" />
+      <div class="card-name" title="2gether: The Series">2gether: The Series</div>
+    </div>
+    <div class="card" data-name="Eternal Love">
+      <img src="https://i.imgur.com/QNdC3go.jpg" alt="Eternal Love" />
+      <div class="card-name" title="Eternal Love">Eternal Love</div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function filterDramas() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name').toLowerCase();
+      if (name.includes(input)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
