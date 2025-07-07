@@ -8,23 +8,138 @@
       background-color: #121212;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 50px;
+      margin: 0; padding: 0;
     }
-    h1 {
-      color: #e50914;
-      font-size: 3em;
-      margin-bottom: 0;
+    header {
+      background-color: #e50914;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    p {
-      font-size: 1.5em;
-      margin-top: 5px;
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .card-content h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+    }
+    .card-content p {
+      margin: 0 0 10px 0;
+      color: #bbb;
+    }
+    .watch-btn {
+      display: inline-block;
+      background-color: #e50914;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .watch-btn:hover {
+      background-color: #b0060f;
     }
   </style>
 </head>
 <body>
-  <h1>OnlyDrama</h1>
-  <p>Welcome to your drama streaming site!</p>
-  <img src="https://i.imgur.com/ZX6m6Bt.jpg" alt="Drama Image" width="300" />
+  <header>
+    <h1>OnlyDrama</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">K-Dramas</a>
+      <a href="#">J-Dramas</a>
+      <a href="#">Thai</a>
+      <a href="#">Chinese</a>
+      <a href="#">Anime</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Popular Dramas</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://i.imgur.com/4Z9o0iC.jpg" alt="Crash Landing on You" />
+        <div class="card-content">
+          <h3>Crash Landing on You</h3>
+          <p>K-Drama</p>
+          <a href="#" class="watch-btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/ocXuXOS.jpg" alt="Hana Yori Dango" />
+        <div class="card-content">
+          <h3>Hana Yori Dango</h3>
+          <p>J-Drama</p>
+          <a href="#" class="watch-btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/38ORHPs.jpg" alt="2gether: The Series" />
+        <div class="card-content">
+          <h3>2gether: The Series</h3>
+          <p>Thai Drama</p>
+          <a href="#" class="watch-btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/QNdC3go.jpg" alt="Eternal Love" />
+        <div class="card-content">
+          <h3>Eternal Love</h3>
+          <p>Chinese Drama</p>
+          <a href="#" class="watch-btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/ZX6m6Bt.jpg" alt="Attack on Titan" />
+        <div class="card-content">
+          <h3>Attack on Titan</h3>
+          <p>Anime</p>
+          <a href="#" class="watch-btn">Watch Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
