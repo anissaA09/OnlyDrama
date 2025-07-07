@@ -1,79 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>OnlyDrama</title>
+import React, { useState } from "react";
 
-  <!-- Google Fonts: Pacifico for logo -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+const dramas = [
+  { id: 1, name: "Japanese Drama 1", img: "https://via.placeholder.com/120x160?text=JPN+1" },
+  { id: 2, name: "Korean Drama 1", img: "https://via.placeholder.com/120x160?text=KOR+1" },
+  { id: 3, name: "Thai Drama 1", img: "https://via.placeholder.com/120x160?text=THAI+1" },
+  { id: 4, name: "Chinese Drama 1", img: "https://via.placeholder.com/120x160?text=CHN+1" },
+  { id: 5, name: "Anime 1", img: "https://via.placeholder.com/120x160?text=ANIME+1" },
+];
 
-  <style>
-    body {
-      background-color: white;
-      color: #333;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-    }
-    header {
-      background-color: #ffc0cb; /* cute pink */
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 6px rgba(255, 192, 203, 0.3);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3.8em;
-      color: #ff69b4; /* hot pink */
-      margin: 0;
-      cursor: pointer;
-      user-select: none;
-      letter-spacing: 2px;
-      position: relative;
-    }
-    /* Soft light yellow underline/glow for the logo */
-    header h1::after {
-      content: '';
-      position: absolute;
-      bottom: 6px;
-      left: 0;
-      width: 100%;
-      height: 10px;
-      background: #fff8dc; /* soft light yellow */
-      border-radius: 5px;
-      filter: blur(6px);
-      z-index: -1;
-    }
-    nav {
-      display: flex;
-      gap: 15px;
-    }
-    nav a {
-      color: #ff69b4;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1em;
-      padding: 8px 12px;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-    nav a:hover {
-      background-color: #fffacd; /* light yellow */
-      color: #ff1493; /* deeper pink */
-    }
-    main {
-      padding: 30px 40px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    .search-bar {
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    .search-bar input {
-      width: 80%;
-      max-width: 400px;
+export default function OnlyDrama() {
+  const [search, setSearch] = useState("");
+
+  const filteredDramas = dramas.filter(d =>
+    d.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div style={styles.page}>
+      <header style={styles.header}>
+        <h1 style={styles.title}>OnlyDrama 💖</h1>
+        <input
+          type="text"
+          placeholder="Search dramas..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={styles.searchBar}
+        />
+      </header>
+
+      <main style={styles.grid}>
+        {filteredDramas.map((drama) => (
+          <div key={drama.id} style={styles.card}>
+            <img src={drama.img} alt={drama.name} style={styles.img} />
+            <p style={styles.name}>{drama.name}</p>
+          </div>
+        ))}
+      </main>
+    </div>
+  );
+}
+
+const styles = {
+  page: {
+    backgroundColor: "#fff",
+    minHeight: "100vh",
+    fontFamily: "'Comic Sans MS', cursive, sans-serif",
+    color: "#ff66cc", // pink kawaii color for text
+    padding: 20,
+  },
+  header: {
+    textAlign: "center",
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 48,
+    color: "#ff99cc", // soft pink
+    marginBottom: 10,
+    fontWeight: "bold",
+  },
+  searchBar: {
+    padding: 10,
+    fontSize: 16,
+    borderRadius: 20,
+    border: "2px solid #ffccff", // light pink border
+    outline: "none",
+    width: "60%",
+    maxWidth: 400,
+  },
+  grid: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    gap: 20,
+  },
+  card: {
+    width: 120,
+    textAlign: "center",
+    borderRadius: 10,
+    boxShadow: "0 4px 8px rgba(255,182,193,0.3)", // light pink shadow
+    backgroundColor: "#fff8e1", // light yellow background
+    padding: 10,
+  },
+  img: {
+    width: "100%",
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  name: {
+    fontWeight: "bold",
+    fontSize: 14,
+    color: "#ff6699", // darker pink for text
+  },
+};
