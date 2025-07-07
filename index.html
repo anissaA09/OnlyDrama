@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,64 +8,101 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/1bX5QH6.png" />
 
-  <!-- Google Fonts: Poppins for a modern, clean look -->
+  <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* RESET */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background-color: #fff;
       font-family: 'Poppins', sans-serif;
       color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
+    /* HEADER */
     header {
-      background-color: #ff66cc; /* pink */
+      background: linear-gradient(90deg, #ff66cc 0%, #ffcc66 100%);
       padding: 15px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(255, 102, 204, 0.4);
+      box-shadow: 0 2px 10px rgba(255, 102, 204, 0.4);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    header h1 {
-      font-weight: 600;
-      font-size: 2rem;
-      color: #fff;
-      margin: 0;
+    /* LOGO area */
+    .logo {
+      display: flex;
+      align-items: center;
       cursor: pointer;
       user-select: none;
+      gap: 10px;
+    }
+    /* Girl SVG icon */
+    .logo svg {
+      width: 40px;
+      height: 40px;
+      fill: #fff;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.2));
+    }
+    .logo h1 {
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: #fff;
+      margin: 0;
       letter-spacing: 2px;
     }
+    /* NAV */
     nav {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
     nav a {
       color: #fff;
       font-weight: 600;
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 8px;
       transition: background-color 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.15);
     }
     nav a:hover {
-      background-color: #ff99cc;
+      background-color: #fffacd; /* soft yellow */
       color: #330033;
+      font-weight: 700;
     }
+
+    /* MAIN content layout */
     main {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 30px auto;
       padding: 0 20px;
+      display: flex;
+      gap: 30px;
+      flex-grow: 1;
+    }
+    /* LEFT: main grid + search */
+    .left-content {
+      flex: 1.3;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
     .search-bar {
-      margin-bottom: 30px;
       text-align: center;
     }
     .search-bar input {
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       padding: 12px 16px;
       font-size: 1rem;
       border: 2px solid #ff66cc;
@@ -74,10 +111,11 @@
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .search-bar input:focus {
-      border-color: #ff99cc;
-      box-shadow: 0 0 8px #ff99cc;
+      border-color: #ffcc66;
+      box-shadow: 0 0 8px #ffcc66;
       background-color: #fff;
     }
+    /* Drama grid */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
@@ -117,12 +155,97 @@
       flex-grow: 1;
       background-color: #fff0f6;
     }
+
+    /* RIGHT: recommendations sidebar */
+    aside.recommendations {
+      width: 240px;
+      background-color: #fff8dc; /* soft light yellow */
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(255, 204, 102, 0.3);
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    aside.recommendations h2 {
+      margin: 0 0 12px 0;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #cc7a00; /* darker yellow */
+      border-bottom: 2px solid #cc7a00;
+      padding-bottom: 4px;
+    }
+    .rec-card {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border-radius: 8px;
+      padding: 6px;
+    }
+    .rec-card:hover {
+      background-color: #ffeb99; /* light yellow highlight */
+    }
+    .rec-card img {
+      width: 48px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 0 5px rgba(204, 122, 0, 0.4);
+    }
+    .rec-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #cc7a00;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+      }
+      aside.recommendations {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+        gap: 10px;
+      }
+      .rec-card {
+        flex-direction: column;
+        align-items: center;
+        min-width: 100px;
+        padding: 4px;
+      }
+      .rec-card img {
+        width: 100%;
+        height: auto;
+      }
+      .rec-name {
+        font-size: 0.85rem;
+        text-align: center;
+        white-space: normal;
+      }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1 onclick="window.location.reload()">OnlyDrama</h1>
+  <div class="logo" onclick="window.location.reload()" aria-label="OnlyDrama Home">
+    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="#ff66cc"/>
+      <path fill="#fff" d="M32 14c6.627 0 12 5.373 12 12v6c0 6.627-5.373 12-12 12s-12-5.373-12-12v-6c0-6.627 5.373-12 12-12zm0 4a8 8 0 0 0-8 8v6a8 8 0 0 0 16 0v-6a8 8 0 0 0-8-8z"/>
+      <circle cx="32" cy="30" r="3" fill="#ffcc66"/>
+    </svg>
+    <h1>OnlyDrama</h1>
+  </div>
   <nav>
     <a href="#">Anime</a>
     <a href="#">J-Drama</a>
@@ -133,38 +256,64 @@
 </header>
 
 <main>
-  <div class="search-bar">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search dramas..."
-      onkeyup="filterDramas()"
-      aria-label="Search dramas"
-    />
+  <div class="left-content">
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search dramas..."
+        onkeyup="filterDramas()"
+        aria-label="Search dramas"
+      />
+    </div>
+
+    <div class="grid" id="dramaGrid">
+      <div class="card" data-name="Attack on Titan">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Attack_on_Titan_cover.png" alt="Attack on Titan" />
+        <div class="card-name" title="Attack on Titan">Attack on Titan</div>
+      </div>
+      <div class="card" data-name="Hana Yori Dango">
+        <img src="https://upload.wikimedia.org/wikipedia/en/e/e0/Boys_Over_Flowers_poster.jpg" alt="Hana Yori Dango" />
+        <div class="card-name" title="Hana Yori Dango">Hana Yori Dango</div>
+      </div>
+      <div class="card" data-name="Crash Landing on You">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Crash_Landing_on_You_poster.jpg" alt="Crash Landing on You" />
+        <div class="card-name" title="Crash Landing on You">Crash Landing on You</div>
+      </div>
+      <div class="card" data-name="2gether: The Series">
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/2gether_The_Series_poster.jpg" alt="2gether: The Series" />
+        <div class="card-name" title="2gether: The Series">2gether: The Series</div>
+      </div>
+      <div class="card" data-name="Eternal Love">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Eternal_Love_Chinese_TV_Series_Poster.jpg" alt="Eternal Love" />
+        <div class="card-name" title="Eternal Love">Eternal Love</div>
+      </div>
+    </div>
   </div>
 
-  <div class="grid" id="dramaGrid">
-    <div class="card" data-name="Attack on Titan">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Attack_on_Titan_cover.png" alt="Attack on Titan" />
-      <div class="card-name" title="Attack on Titan">Attack on Titan</div>
+  <aside class="recommendations" aria-label="Recommended Dramas">
+    <h2>Recommended</h2>
+
+    <div class="rec-card" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Terra_Formars_poster.jpg" alt="Terra Formars" />
+      <div class="rec-name" title="Terra Formars">Terra Formars</div>
     </div>
-    <div class="card" data-name="Hana Yori Dango">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/e0/Boys_Over_Flowers_poster.jpg" alt="Hana Yori Dango" />
-      <div class="card-name" title="Hana Yori Dango">Hana Yori Dango</div>
+
+    <div class="rec-card" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Mystic_Pop_Up_Bar_poster.jpg" alt="Mystic Pop-Up Bar" />
+      <div class="rec-name" title="Mystic Pop-Up Bar">Mystic Pop-Up Bar</div>
     </div>
-    <div class="card" data-name="Crash Landing on You">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Crash_Landing_on_You_poster.jpg" alt="Crash Landing on You" />
-      <div class="card-name" title="Crash Landing on You">Crash Landing on You</div>
+
+    <div class="rec-card" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/en/8/85/Start-Up_%28South_Korean_TV_series%29.jpg" alt="Start-Up" />
+      <div class="rec-name" title="Start-Up">Start-Up</div>
     </div>
-    <div class="card" data-name="2gether: The Series">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/2gether_The_Series_poster.jpg" alt="2gether: The Series" />
-      <div class="card-name" title="2gether: The Series">2gether: The Series</div>
+
+    <div class="rec-card" tabindex="0">
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Itaewon_Class_poster.jpg" alt="Itaewon Class" />
+      <div class="rec-name" title="Itaewon Class">Itaewon Class</div>
     </div>
-    <div class="card" data-name="Eternal Love">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Eternal_Love_Chinese_TV_Series_Poster.jpg" alt="Eternal Love" />
-      <div class="card-name" title="Eternal Love">Eternal Love</div>
-    </div>
-  </div>
+  </aside>
 </main>
 
 <script>
@@ -180,3 +329,4 @@
 
 </body>
 </html>
+
