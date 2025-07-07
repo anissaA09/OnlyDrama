@@ -418,6 +418,113 @@ https://m.media-amazon.com/images/M/MV5BN2FjNTEzZTQtNGRmNi00OWQ4LTk3N2YtZDNlZTlm
     { ep: 2, video: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" }
   ]
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hana Yori Dango – OnlyDrama</title>
+  <link rel="icon" href="https://i.imgur.com/qY5U3Zs.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8fc;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d63384;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .poster {
+      max-width: 300px;
+      flex: 1;
+    }
+
+    .poster img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info {
+      flex: 2;
+    }
+
+    .episodes {
+      margin-top: 20px;
+    }
+
+    .episodes button {
+      background: #ffc0cb;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      margin: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .episodes button:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    .video-player {
+      margin-top: 30px;
+      display: none;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<h1>Hana Yori Dango</h1>
+<div class="container">
+  <div class="poster">
+    <img src="https://m.media-amazon.com/images/M/MV5BN2FjNTEzZTQtNGRmNi00OWQ4LTk3N2YtZDNlZTlmMTMxMWRlXkEyXkFqcGc@._V1_.jpg" alt="Hana Yori Dango Poster">
+  </div>
+  <div class="info">
+    <p><strong>Beschrijving:</strong> Een arm meisje komt terecht op een prestigieuze school voor de elite. Ze krijgt het aan de stok met de beruchte F4-groep... maar liefde bloeit op onverwachte plekken.</p>
+
+    <div class="episodes">
+      <strong>Afleveringen:</strong><br>
+      <button onclick="showEpisode(1)">EP 1</button>
+      <button onclick="alert('Episode 2 not available yet')">EP 2</button>
+      <button onclick="alert('Episode 3 not available yet')">EP 3</button>
+    </div>
+
+    <div class="video-player" id="videoPlayer">
+      <h3>EPISODE 1 – Video</h3>
+      <video controls>
+        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showEpisode(ep) {
+    if (ep === 1) {
+      document.getElementById('videoPlayer').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('videoPlayer').offsetTop, behavior: 'smooth' });
+    }
+  }
+</script>
+
+</body>
+</html>
 
 
 
