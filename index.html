@@ -5,141 +5,161 @@
   <title>OnlyDrama</title>
   <style>
     body {
-      background-color: #121212;
-      color: white;
+      background-color: white;
+      color: #333;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0; padding: 0;
     }
     header {
-      background-color: #e50914;
+      background-color: #ffc0cb; /* cute pink */
       padding: 20px 40px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(255, 192, 203, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 3.5em;
+      color: #ff69b4; /* hot pink */
       margin: 0;
-      font-size: 2em;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 2px;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
     }
     nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
+      color: #ff69b4;
       font-weight: bold;
+      text-decoration: none;
       font-size: 1.1em;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
     }
     nav a:hover {
-      text-decoration: underline;
+      background-color: #fffacd; /* light yellow */
+      color: #ff1493; /* deeper pink */
     }
     main {
-      padding: 40px;
-      max-width: 1200px;
+      padding: 30px 40px;
+      max-width: 1100px;
       margin: auto;
+    }
+    .search-bar {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .search-bar input {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: 2px solid #ff69b4;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: #fffacd;
+      background-color: #fffacd;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+      gap: 25px;
     }
     .card {
-      background: #222;
-      border-radius: 10px;
+      background: #fff0f6;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(255, 192, 203, 0.3);
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
-      transition: transform 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding-bottom: 10px;
     }
     .card:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow: 0 6px 14px rgba(255, 182, 193, 0.6);
     }
     .card img {
       width: 100%;
-      height: 320px;
+      height: 220px;
       object-fit: cover;
-      display: block;
+      border-bottom: 3px solid #ffb6c1; /* light pink border */
     }
-    .card-content {
-      padding: 15px;
-    }
-    .card-content h3 {
-      margin: 0 0 10px 0;
-      font-size: 1.2em;
-    }
-    .card-content p {
-      margin: 0 0 10px 0;
-      color: #bbb;
-    }
-    .watch-btn {
-      display: inline-block;
-      background-color: #e50914;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .watch-btn:hover {
-      background-color: #b0060f;
+    .card-name {
+      font-weight: 700;
+      color: #ff1493;
+      font-size: 1.1em;
+      margin: 12px 0 0 0;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>OnlyDrama</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">K-Dramas</a>
-      <a href="#">J-Dramas</a>
-      <a href="#">Thai</a>
-      <a href="#">Chinese</a>
-      <a href="#">Anime</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Popular Dramas</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="https://i.imgur.com/4Z9o0iC.jpg" alt="Crash Landing on You" />
-        <div class="card-content">
-          <h3>Crash Landing on You</h3>
-          <p>K-Drama</p>
-          <a href="#" class="watch-btn">Watch Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://i.imgur.com/ocXuXOS.jpg" alt="Hana Yori Dango" />
-        <div class="card-content">
-          <h3>Hana Yori Dango</h3>
-          <p>J-Drama</p>
-          <a href="#" class="watch-btn">Watch Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://i.imgur.com/38ORHPs.jpg" alt="2gether: The Series" />
-        <div class="card-content">
-          <h3>2gether: The Series</h3>
-          <p>Thai Drama</p>
-          <a href="#" class="watch-btn">Watch Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://i.imgur.com/QNdC3go.jpg" alt="Eternal Love" />
-        <div class="card-content">
-          <h3>Eternal Love</h3>
-          <p>Chinese Drama</p>
-          <a href="#" class="watch-btn">Watch Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://i.imgur.com/ZX6m6Bt.jpg" alt="Attack on Titan" />
-        <div class="card-content">
-          <h3>Attack on Titan</h3>
-          <p>Anime</p>
-          <a href="#" class="watch-btn">Watch Now</a>
-        </div>
-      </div>
+<header>
+  <h1 onclick="window.location.reload()">OnlyDrama</h1>
+  <nav>
+    <a href="#">Anime</a>
+    <a href="#">J-Drama</a>
+    <a href="#">Korean</a>
+    <a href="#">Thai</a>
+    <a href="#">Chinese</a>
+  </nav>
+</header>
+
+<main>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search dramas..." onkeyup="filterDramas()" />
+  </div>
+
+  <div class="grid" id="dramaGrid">
+    <div class="card" data-name="Attack on Titan">
+      <img src="https://i.imgur.com/ZX6m6Bt.jpg" alt="Attack on Titan" />
+      <div class="card-name">Attack on Titan</div>
     </div>
-  </main>
+    <div class="card" data-name="Hana Yori Dango">
+      <img src="https://i.imgur.com/ocXuXOS.jpg" alt="Hana Yori Dango" />
+      <div class="card-name">Hana Yori Dango</div>
+    </div>
+    <div class="card" data-name="Crash Landing on You">
+      <img src="https://i.imgur.com/4Z9o0iC.jpg" alt="Crash Landing on You" />
+      <div class="card-name">Crash Landing on You</div>
+    </div>
+    <div class="card" data-name="2gether: The Series">
+      <img src="https://i.imgur.com/38ORHPs.jpg" alt="2gether: The Series" />
+      <div class="card-name">2gether: The Series</div>
+    </div>
+    <div class="card" data-name="Eternal Love">
+      <img src="https://i.imgur.com/QNdC3go.jpg" alt="Eternal Love" />
+      <div class="card-name">Eternal Love</div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function filterDramas() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name').toLowerCase();
+      if (name.includes(input)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
